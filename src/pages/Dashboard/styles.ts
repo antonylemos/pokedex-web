@@ -4,6 +4,10 @@ interface FormInputProps {
   isFocused: boolean;
 }
 
+interface PokemonCardProps {
+  colors: { background: string; shadow: string };
+}
+
 export const Container = styled.div``;
 
 export const Header = styled.header`
@@ -85,11 +89,11 @@ export const FormInput = styled.div<FormInputProps>`
   max-width: 736px;
   background: #f2f2f2;
 
-  ${props =>
+  /* ${props =>
     props.isFocused &&
     css`
       background: #e2e2e2;
-    `}
+    `} */
 
   border-radius: 10px;
   padding: 20px;
@@ -125,55 +129,56 @@ export const FormInput = styled.div<FormInputProps>`
 
 export const PokemonList = styled.section`
   margin-top: 80px;
+  margin-bottom: 40px;
   display: grid;
   grid-gap: 30px;
   grid-template: 1fr 1fr 1fr/1fr 1fr 1fr;
 
   justify-items: center;
   align-items: center;
+`;
 
-  a {
-    height: 115px;
-    width: 100%;
-    padding: 20px;
-    border-radius: 10px;
-    background: #ffa756;
-    text-decoration: none;
+export const PokemonCard = styled.a<PokemonCardProps>`
+  height: 115px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  background: ${props => props.colors.background};
+  text-decoration: none;
 
-    box-shadow: 0px 10px 20px #ffa75666;
+  box-shadow: 0px 10px 20px ${props => props.colors.shadow};
 
+  display: flex;
+  position: relative;
+  transition: transform 0.2s;
+
+  div {
     display: flex;
-    position: relative;
-    transition: transform 0.2s;
+    flex-direction: column;
 
-    div {
-      display: flex;
-      flex-direction: column;
-
-      span {
-        font-size: 12px;
-        font-weight: 700;
-        line-height: 14px;
-        color: #17171b;
-      }
-
-      strong {
-        font-size: 26px;
-        color: #fff;
-      }
+    span {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 14px;
+      color: #17171b;
     }
 
-    img {
-      z-index: 1;
-      position: absolute;
-      top: -25px;
-      right: 3px;
-      width: 130px;
-      height: 130px;
+    strong {
+      font-size: 26px;
+      color: #fff;
     }
+  }
 
-    &:hover {
-      transform: translateY(-10px);
-    }
+  img {
+    z-index: 1;
+    position: absolute;
+    top: -25px;
+    right: 3px;
+    width: 130px;
+    height: 130px;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
   }
 `;

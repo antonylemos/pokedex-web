@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 
 import api from '../../services/api';
 
@@ -13,10 +13,12 @@ import {
   Form,
   FormInput,
   PokemonList,
+  PokemonCard,
 } from './styles';
 
 import generatePokedexNumber from '../../utils/generatePokedexNumber';
 import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter';
+import generateBackgroundColorByTypes from '../../utils/generateBackgroundColorByTypes';
 
 import pokeballImage from '../../assets/patterns/pokeball.svg';
 import generationIcon from '../../assets/icons/generation.svg';
@@ -58,6 +60,14 @@ const Dashboard: React.FC = () => {
     setIsFocused(false);
   }, []);
 
+  const handleSearch = useCallback((value: string) => {
+    setSearchValue(value);
+  }, []);
+
+  const firstGeneration = useMemo(() => {
+    return pokemons.filter(pokemon => pokemon.id < 152);
+  }, [pokemons]);
+
   return (
     <Container>
       <Header>
@@ -91,7 +101,7 @@ const Dashboard: React.FC = () => {
             <img src={searchIcon} alt="Search" />
             <input
               value={searchValue}
-              onChange={e => setSearchValue(e.target.value)}
+              onChange={e => handleSearch(e.target.value)}
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
               placeholder="What Pokémon are you looking for?"
@@ -100,15 +110,19 @@ const Dashboard: React.FC = () => {
         </Form>
 
         <PokemonList>
-          {pokemons.map(({ id, number, name, image }) => (
-            <a key={id} href="www">
+          {firstGeneration.map(({ id, number, name, image, types }) => (
+            <PokemonCard
+              key={id}
+              href="www"
+              colors={generateBackgroundColorByTypes(types[0])}
+            >
               <div>
                 <span>{number}</span>
                 <strong>{name}</strong>
               </div>
 
               <img src={image} alt={name} />
-            </a>
+            </PokemonCard>
           ))}
         </PokemonList>
       </Content>
