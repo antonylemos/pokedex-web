@@ -15,6 +15,9 @@ import {
   PokemonList,
 } from './styles';
 
+import generatePokedexNumber from '../../utils/generatePokedexNumber';
+import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter';
+
 import pokeballImage from '../../assets/patterns/pokeball.svg';
 import generationIcon from '../../assets/icons/generation.svg';
 import sortIcon from '../../assets/icons/sort.svg';
@@ -31,11 +34,19 @@ interface Pokemon {
 
 const Dashboard: React.FC = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+
+  const [searchValue, setSearchValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    api.get('pokemons').then(response => {
-      setPokemons(response.data);
+    api.get<Pokemon[]>('pokemons').then(response => {
+      setPokemons(
+        response.data.map(pokemon => ({
+          ...pokemon,
+          number: generatePokedexNumber(pokemon.id),
+          name: capitalizeFirstLetter(pokemon.name),
+        })),
+      );
     });
   }, []);
 
@@ -79,8 +90,8 @@ const Dashboard: React.FC = () => {
           <FormInput isFocused={isFocused}>
             <img src={searchIcon} alt="Search" />
             <input
-              // value={newRepo}
-              // onChange={e => setNewRepo(e.target.value)}
+              value={searchValue}
+              onChange={e => setSearchValue(e.target.value)}
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
               placeholder="What Pokémon are you looking for?"
@@ -92,7 +103,7 @@ const Dashboard: React.FC = () => {
           {pokemons.map(({ id, number, name, image }) => (
             <a key={id} href="www">
               <div>
-                <span>{`#${number}`}</span>
+                <span>{number}</span>
                 <strong>{name}</strong>
               </div>
 
