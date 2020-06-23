@@ -1,4 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+
+import api from '../../services/api';
 
 import {
   Container,
@@ -19,53 +21,23 @@ import sortIcon from '../../assets/icons/sort.svg';
 import filterIcon from '../../assets/icons/filter.svg';
 import searchIcon from '../../assets/icons/search.svg';
 
-import charmanderImage from '../../assets/generations/generation1/04.svg';
-
 interface Pokemon {
+  id: number;
+  number: string;
   name: string;
-  url: string;
+  image: string;
+  types: string[];
 }
 
 const Dashboard: React.FC = () => {
-  const [pokemons, setPokemons] = useState<Pokemon[]>([
-    {
-      name: 'Bulbasaur',
-      url: 'https://pokeapi.co/api/v2/pokemon/1/',
-    },
-    {
-      name: 'Ivysaur',
-      url: 'https://pokeapi.co/api/v2/pokemon/2/',
-    },
-    {
-      name: 'Venusaur',
-      url: 'https://pokeapi.co/api/v2/pokemon/3/',
-    },
-    {
-      name: 'Charmander',
-      url: 'https://pokeapi.co/api/v2/pokemon/4/',
-    },
-    {
-      name: 'Charmeleon',
-      url: 'https://pokeapi.co/api/v2/pokemon/5/',
-    },
-    {
-      name: 'Charizard',
-      url: 'https://pokeapi.co/api/v2/pokemon/6/',
-    },
-    {
-      name: 'Squirtle',
-      url: 'https://pokeapi.co/api/v2/pokemon/7/',
-    },
-    {
-      name: 'Wartortle',
-      url: 'https://pokeapi.co/api/v2/pokemon/8/',
-    },
-    {
-      name: 'Blastoise',
-      url: 'https://pokeapi.co/api/v2/pokemon/9/',
-    },
-  ]);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    api.get('pokemons').then(response => {
+      setPokemons(response.data);
+    });
+  }, []);
 
   const handleInputFocus = useCallback(() => {
     setIsFocused(true);
@@ -117,17 +89,14 @@ const Dashboard: React.FC = () => {
         </Form>
 
         <PokemonList>
-          {pokemons.map((pokemon, index) => (
-            <a key={pokemon.name} href="www">
+          {pokemons.map(({ id, number, name, image }) => (
+            <a key={id} href="www">
               <div>
-                <span>
-                  #00
-                  {index + 1}
-                </span>
-                <strong>{pokemon.name}</strong>
+                <span>{`#${number}`}</span>
+                <strong>{name}</strong>
               </div>
 
-              <img src={charmanderImage} alt="Charmander" />
+              <img src={image} alt={name} />
             </a>
           ))}
         </PokemonList>
