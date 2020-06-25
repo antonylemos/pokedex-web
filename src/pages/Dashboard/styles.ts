@@ -8,6 +8,10 @@ interface PokemonCardProps {
   colors: { background: string; shadow: string };
 }
 
+interface TypeBadgeProps {
+  color: string;
+}
+
 export const Container = styled.div``;
 
 export const Header = styled.header`
@@ -152,15 +156,16 @@ export const PokemonCard = styled.a<PokemonCardProps>`
   position: relative;
   transition: transform 0.2s;
 
-  div {
+  > div {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
-    span {
+    > span {
       font-size: 12px;
       font-weight: 700;
       line-height: 14px;
-      color: #17171b;
+      color: #17171b99;
     }
 
     strong {
@@ -180,5 +185,32 @@ export const PokemonCard = styled.a<PokemonCardProps>`
 
   &:hover {
     transform: translateY(-10px);
+  }
+`;
+
+export const Type = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const TypeBadge = styled.div<TypeBadgeProps>`
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 3px;
+
+  background: ${props => props.color};
+
+  & + div {
+    margin-left: 5px;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    margin-left: 5px;
+    color: #fff;
   }
 `;

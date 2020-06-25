@@ -3,6 +3,27 @@ import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import api from '../../services/api';
 
 import {
+  Bug,
+  Dark,
+  Dragon,
+  Electric,
+  Fairy,
+  Fighting,
+  Fire,
+  Flying,
+  Ghost,
+  Grass,
+  Ground,
+  Ice,
+  Normal,
+  Poison,
+  Psychic,
+  Rock,
+  Steel,
+  Water,
+} from '../../components/types';
+
+import {
   Container,
   Header,
   HeaderContent,
@@ -14,11 +35,14 @@ import {
   FormInput,
   PokemonList,
   PokemonCard,
+  Type,
+  TypeBadge,
 } from './styles';
 
 import generatePokedexNumber from '../../utils/generatePokedexNumber';
 import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter';
 import generateBackgroundColorByTypes from '../../utils/generateBackgroundColorByTypes';
+import generateColorByType from '../../utils/generateColorByType';
 
 import pokeballImage from '../../assets/patterns/pokeball.svg';
 import generationIcon from '../../assets/icons/generation.svg';
@@ -33,6 +57,27 @@ interface Pokemon {
   image: string;
   types: string[];
 }
+
+const typeMapper = {
+  bug: Bug,
+  dark: Dark,
+  dragon: Dragon,
+  electric: Electric,
+  fairy: Fairy,
+  fighting: Fighting,
+  fire: Fire,
+  flying: Flying,
+  ghost: Ghost,
+  grass: Grass,
+  ground: Ground,
+  ice: Ice,
+  normal: Normal,
+  poison: Poison,
+  psychic: Psychic,
+  rock: Rock,
+  steel: Steel,
+  water: Water,
+};
 
 const Dashboard: React.FC = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
@@ -113,12 +158,25 @@ const Dashboard: React.FC = () => {
           {firstGeneration.map(({ id, number, name, image, types }) => (
             <PokemonCard
               key={id}
-              href="www"
               colors={generateBackgroundColorByTypes(types[0])}
             >
               <div>
                 <span>{number}</span>
                 <strong>{name}</strong>
+
+                <Type>
+                  {types.map(type => (
+                    <TypeBadge key={type} color={generateColorByType(type)}>
+                      {typeMapper[type]({
+                        fill: '#fff',
+                        width: 14,
+                        height: 14,
+                      })}
+
+                      <span>{capitalizeFirstLetter(type)}</span>
+                    </TypeBadge>
+                  ))}
+                </Type>
               </div>
 
               <img src={image} alt={name} />
