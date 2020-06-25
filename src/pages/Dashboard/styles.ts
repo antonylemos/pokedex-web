@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 interface FormInputProps {
   isFocused: boolean;
@@ -93,16 +93,8 @@ export const FormInput = styled.div<FormInputProps>`
   max-width: 736px;
   background: #f2f2f2;
 
-  /* ${props =>
-    props.isFocused &&
-    css`
-      background: #e2e2e2;
-    `} */
-
   border-radius: 10px;
   padding: 20px;
-  /* border: 0; */
-  /* height: 70px; */
 
   display: flex;
   justify-content: space-between;
@@ -117,13 +109,8 @@ export const FormInput = styled.div<FormInputProps>`
   input {
     flex: 1;
     background: transparent;
-    /* height: 20px; */
-    /* padding: 0 24px; */
     border: 0;
-    /* border-radius: 10px; */
     color: #17171b;
-    /* border: 2px solid #fff; */
-    /* border-right: 0; */
 
     &::placeholder {
       color: #747476;
