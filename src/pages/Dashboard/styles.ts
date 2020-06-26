@@ -20,11 +20,14 @@ export const Header = styled.header`
 `;
 
 export const HeaderContent = styled.div`
-  max-width: 1120px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  width: 90%;
+  max-width: 1120px;
+
+  margin: auto;
 
   img {
     width: 25px;
@@ -32,7 +35,7 @@ export const HeaderContent = styled.div`
   }
 `;
 
-export const HeaderOptions = styled.div`
+export const HeaderOptions = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,7 +57,7 @@ export const HeaderOptions = styled.div`
     }
 
     & + button {
-      margin-left: 25px;
+      margin-left: 15px;
     }
 
     &:hover {
@@ -66,27 +69,35 @@ export const HeaderOptions = styled.div`
 `;
 
 export const Content = styled.main`
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-items: center;
+`;
+
+export const Form = styled.form`
+  width: 90%;
   max-width: 1120px;
-  margin: 0 auto;
+  margin: auto;
+
+  h1 {
+    font-size: 3.2rem;
+    color: #17171b;
+    line-height: 3.8rem;
+
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+
+  span {
+    font-size: 16px;
+    color: #747476;
+    line-height: 1.9rem;
+  }
 `;
-
-export const Title = styled.h1`
-  font-size: 32px;
-  color: #17171b;
-  line-height: 56px;
-
-  margin-top: 40px;
-`;
-
-export const Description = styled.span`
-  font-size: 16px;
-  color: #747476;
-  line-height: 28px;
-
-  margin-top: 10px;
-`;
-
-export const Form = styled.form``;
 
 export const FormInput = styled.div<FormInputProps>`
   margin-top: 25px;
@@ -119,19 +130,18 @@ export const FormInput = styled.div<FormInputProps>`
 `;
 
 export const PokemonList = styled.section`
-  margin-top: 80px;
-  margin-bottom: 40px;
+  width: 90%;
+  max-width: 1120px;
+  margin: auto;
+  margin-top: 45px;
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   grid-gap: 30px;
-  grid-template: 1fr 1fr 1fr/1fr 1fr 1fr;
-
-  justify-items: center;
-  align-items: center;
 `;
 
 export const PokemonCard = styled.a<PokemonCardProps>`
-  height: 115px;
-  width: 100%;
+  /* height: 115px;
+  width: 100%; */
   padding: 20px;
   border-radius: 10px;
   background: ${props => props.colors.background};

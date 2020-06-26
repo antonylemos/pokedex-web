@@ -29,8 +29,6 @@ import {
   HeaderContent,
   HeaderOptions,
   Content,
-  Title,
-  Description,
   Form,
   FormInput,
   PokemonList,
@@ -149,12 +147,12 @@ const Dashboard: React.FC = () => {
       </Header>
 
       <Content>
-        <Title>Pokédex</Title>
-        <Description>
-          Search for Pokémon by name or using the National Pokédex number.
-        </Description>
-
         <Form>
+          <h1>Pokédex</h1>
+          <span>
+            Search for Pokémon by name or using the National Pokédex number.
+          </span>
+
           <FormInput isFocused={isFocused}>
             <img src={searchIcon} alt="Search" />
             <input

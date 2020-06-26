@@ -33,15 +33,26 @@ export default createGlobalStyle`
     outline: 0;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
+  html,
+  body {
+    height: 100vh;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
   body {
     background: #fff;
     color: #17171b;
-    -webkit-font-smoothing: antialiased;
+    font-size: 1.6rem;
   }
 
   body, input, button {
     font-family: 'SF Pro';
-    font-size: 16px;
+    font-size: 1.6rem;
   }
 
   h1, h2, h3, h4, h5, h6, strong {
