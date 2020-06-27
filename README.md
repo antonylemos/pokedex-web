@@ -1,4 +1,7 @@
-# Pokédex
+<h1 align="center">
+  <img alt="Pokédex App" src="https://ik.imagekit.io/antony/pokedex_hZ5ZO0RNC.png" />
+</h1>
+
 
 ## 🏷️ Sobre
 
@@ -16,6 +19,8 @@ As seguintes tecnologias foram utilizadas no desenvolvimento dessa aplicação:
 
 
 ## 📦 Como baixar e executar?
+
+⚠️ **Antes de seguir, é necessário ter instalado em sua máquina o [Node.js](https://nodejs.org/en/) e o [Yarn](https://classic.yarnpkg.com/lang/en/).**
 
 Para executar a aplicação em sua máquina, execute os seguintes comandos:
 
@@ -35,6 +40,22 @@ Para executar a aplicação em sua máquina, execute os seguintes comandos:
   # Executar a aplicação
   $ yarn start
 ```
+
+
+## ⚙️ Novas funcionalidades
+
+Próximas _features_ que deverão ser implementadas:
+
+- [ ] Buscar pokémons por nome ou número
+- [ ] Buscar pokémons por geração
+
+- [ ] Filtrar pokémons por tipo(s)
+- [ ] Filtrar pokémons por peso(s)
+- [ ] Filtrar pokémons por altura(s)
+- [ ] Filtrar pokémons por fraquezas
+
+- [ ] Ordenar pokémons por ordem numérica
+- [ ] Ordenar pokémons por ordem alfabetica
 
 ---
 
