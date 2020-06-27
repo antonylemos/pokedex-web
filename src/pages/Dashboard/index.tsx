@@ -93,15 +93,17 @@ const Dashboard: React.FC = () => {
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
-    api.get<Pokemon[]>('pokemons').then(response => {
-      setPokemons(
-        response.data.map(pokemon => ({
-          ...pokemon,
-          number: generatePokedexNumber(pokemon.id),
-          name: capitalizeFirstLetter(pokemon.name),
-        })),
-      );
-    });
+    api
+      .get<Pokemon[]>('https://pokemon-db-json.herokuapp.com')
+      .then(response => {
+        setPokemons(
+          response.data.map(pokemon => ({
+            ...pokemon,
+            number: generatePokedexNumber(pokemon.id),
+            name: capitalizeFirstLetter(pokemon.name),
+          })),
+        );
+      });
   }, []);
 
   const handleInputFocus = useCallback(() => {
