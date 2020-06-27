@@ -2,6 +2,10 @@
   <img alt="Pokédex App" src="https://ik.imagekit.io/antony/pokedex_hZ5ZO0RNC.png" />
 </h1>
 
+<p align="center">
+  <img alt="Pokédex App Demo" src=".github/pokedex.gif?raw=true" />
+</p>
+
 
 ## 🏷️ Sobre
 
