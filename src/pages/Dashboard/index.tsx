@@ -118,6 +118,13 @@ const Dashboard: React.FC = () => {
     setSearchValue(value);
   }, []);
 
+  const handleGeneration = useCallback(() => {
+    setGeneration({
+      initial: 1,
+      final: 152,
+    });
+  }, []);
+
   const pokemonGeneration = useMemo(() => {
     const { initial, final } = generation;
 
@@ -133,7 +140,7 @@ const Dashboard: React.FC = () => {
           <img src={pokeballImage} alt="Pokébola" />
 
           <HeaderOptions>
-            <button type="button">
+            <button type="button" onClick={handleGeneration}>
               <img src={generationIcon} alt="Generation" />
             </button>
 
